@@ -3,5 +3,15 @@
 {% block content %}
    <h2>Problem / Solution</h2>
    <p>Displays 3 solutions & 3 problem definitions</p>
+    <br><br><br>
+  <form method='POST' action='/about'>
+  <label for="comment">Comment:</label>
+  <input name='comment' id="comment" size="100" maxlength="200" placeholder="What I like about the idea..."><br><br>
+  <input type="submit" value="Submit">
+  </form>
+  <br>
+     {% for comment in comments %}
+      {{ comment [0] }}
+    {% endfor %}
 {% endblock %}
 

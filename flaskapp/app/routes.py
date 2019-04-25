@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, flash
 from forms import ContactForm
 from flask_mail import Message, Mail
+import sqlite3
 
 mail = Mail()
 
@@ -20,15 +21,31 @@ mail.init_app(app)
 def home():
 	return render_template('home.html')
 
-@app.route('/about')
+@app.route('/about', methods=['GET', 'POST'])
 def about():
-	return render_template('about.html')
+	if request.method == 'POST':
+		entered_comment = request.form['comment']
+		conn =sqlite3.connect('contact.db')
+		cur = conn.cursor()
+		cur.execute("INSERT INTO comments (comment) VALUES ('{}')".format(entered_comment))
+		conn.commit()
+		cur.execute('SELECT comment FROM comments')
+		rows = cur.fetchall()
+		return render_template('about.html', comments = rows)
+	else:
+		conn =sqlite3.connect('contact.db')
+		cur = conn.cursor()
+		cur.execute('SELECT comment FROM comments')
+		rows = cur.fetchall()
+		return render_template('about.html', comments = rows)
+
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
 	form = ContactForm()
 
 	if request.method == 'POST':
+
 		if form.validate() == False:
 			flash('All fields are required.')
 			return render_template('contact.html', form=form)
@@ -42,8 +59,13 @@ def contact():
 
 		return render_template('contact.html', success=True)
 
-	elif request.method == 'GET':	
-	    return render_template('contact.html', form=form)
+	elif request.method == 'GET':
+		conn =sqlite3.connect('contact.db')
+		cur = conn.cursor()
+		cur.execute('SELECT comment FROM comments')
+		rows = cur.fetchall()
+
+		return render_template('contact.html', form=form, comments = rows)
 
 if __name__ == '__main__':
 	app.run(debug=True)
