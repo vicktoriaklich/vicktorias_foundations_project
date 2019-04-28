@@ -57,6 +57,15 @@ h3 {
 	color: #999;
 }
 
+h4 {
+	font-size: 1.7em;
+	font-weight: 100;
+	margin-top: 30px;
+	text-align: center;
+	letter-spacing: -1px;
+	color: gray;
+}
+
 .menu {
 	float: right;
 	margin-top: 8px;
@@ -138,14 +147,7 @@ form input#submit:hover{
   background-image: -ms-linear-gradient(top, #dbdbdb, #cccccc);
   background-image: -o-linear-gradient(top, #dbdbdb, #cccccc);
   background-image: linear-gradient(top, #dbdbdb, #cccccc);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#dbdbdb, endColorstr=#cccccc);
-}
-
-/* Message flashin */
-.flash {
-  background-color: #FBB0B0;
-  padding: 10px;
-  width: 400px;
-}
+} 
 
 
 

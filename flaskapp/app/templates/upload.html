@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+	
+	{% if items %}
+   	
+   	<form action="/upload" method="post">
+   		<input type="text" name="name" placeholder="Item Name"> <br>
+   		<input type="text" name="description" placeholder="Item Description"> <br>
+   		<input type="text" name="season" placeholder="Season"> <br>
+   		
+   		{% for categor in category %}
+
+   		<input type="radio" name="category" value="{{ categor.id }}">
+   		<label for="{{ categor.name }}">{{ categor.name }}</label>
+   		{% endfor %}
+
+   		{% for brand in brands %}
+   		<input type="radio" name="brand" value="{{ brand.id}}">
+   		<label for="{{ brand.name }}">{{ brand.name }}</label>
+
+
+
+   		{% endfor %}
+   		<input type="submit" name="submit" value="Submit">
+
+   		{% for item in items %}
+
+   		<p>
+   		Item Id: 
+   		{{ item.id }}
+   		Item Name: 
+   		{{ item.name }}
+   		Description: 
+   		{{ item.description }}
+   		Season: 
+   		{{ item.season }}
+   		Brand:
+   		{{ brands[item.brand_id-1]['name']}}
+   		Category:
+   		{{ category[item.categories_id-1]['name']}}
+   		
+
+   		
+   		</p>
+
+   	{% endfor %}
+
+
+   	</form>
+
+   	{% else %}
+
+	<h2>Try it yourself. Upload your first item by adding a name and a description text. Choose category and season. Feel free to give us some <a href="/about">feedback</a></h2>
+
+	{% endif %}
+{% endblock %}
+

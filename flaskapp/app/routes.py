@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, flash
 from forms import ContactForm
 from flask_mail import Message, Mail
-import sqlite3
+from db import *
 
 mail = Mail()
 
@@ -17,27 +17,33 @@ app.config["MAIL_PASSWORD"] = 'somebodylikeme'
  
 mail.init_app(app)
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
+	if request.method == "POST":
+		brand = session.query(Brands).filter(Brands.name == request.form["search_brand"])
+		return render_template('home.html', brand=brand)
 	return render_template('home.html')
 
 @app.route('/about', methods=['GET', 'POST'])
 def about():
-	if request.method == 'POST':
-		entered_comment = request.form['comment']
-		conn =sqlite3.connect('contact.db')
-		cur = conn.cursor()
-		cur.execute("INSERT INTO comments (comment) VALUES ('{}')".format(entered_comment))
-		conn.commit()
-		cur.execute('SELECT comment FROM comments')
-		rows = cur.fetchall()
-		return render_template('about.html', comments = rows)
-	else:
-		conn =sqlite3.connect('contact.db')
-		cur = conn.cursor()
-		cur.execute('SELECT comment FROM comments')
-		rows = cur.fetchall()
-		return render_template('about.html', comments = rows)
+	#comments databse query
+	return render_template('about.html')
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload():
+
+	items = session.query(Items).order_by(Items.id).all()
+	category = session.query(Categories)
+	brands = session.query(Brands)
+
+
+	if request.method == "POST":
+		item = Items(name=request.form["name"],categories_id=request.form["category"], brand_id=request.form["brand"], description=request.form["description"], season=request.form["season"])
+
+		session.add(item)
+		session.commit() 
+		return render_template('upload.html', category=category, brands=brands, items=items)
+	return render_template('upload.html', items=items, category=category, brands=brands)
 
 
 @app.route('/contact', methods=['GET', 'POST'])
@@ -60,12 +66,8 @@ def contact():
 		return render_template('contact.html', success=True)
 
 	elif request.method == 'GET':
-		conn =sqlite3.connect('contact.db')
-		cur = conn.cursor()
-		cur.execute('SELECT comment FROM comments')
-		rows = cur.fetchall()
+		return render_template('contact.html', form=form)
 
-		return render_template('contact.html', form=form, comments = rows)
 
 if __name__ == '__main__':
 	app.run(debug=True)
