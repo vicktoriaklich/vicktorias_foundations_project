@@ -1,58 +1,71 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<hr><br><br>
 
-	
+   <h2>Try it yourself. Upload your first item by adding a name and a description text. Choose category and season. Feel free to give us some <a href="/about">feedback</a></h2><br>
+
+	<!--  Jinja2 if statement: connection to routes.py where user cann add Items in Items table -->
 	{% if items %}
    	
    	<form action="/upload" method="post">
-   		<input type="text" name="name" placeholder="Item Name"> <br>
-   		<input type="text" name="description" placeholder="Item Description"> <br>
-   		<input type="text" name="season" placeholder="Season"> <br>
-   		
+   		<input class="enter_item_name" type="text" name="name" placeholder="Item Name"> <br>
+   		<input class="enter_description" type="text" name="description" placeholder="Item Description"> <br>
+   		<input class="enter_season" type="text" name="season" placeholder="Season"> <br><br>
+
+   <!-- user needs to select a category -->
+   <p class="categories_display">select a categorie</p>
    		{% for categor in category %}
-
+         <!-- for loop for everything that is in table Category. Currently 5 different Values to select. Will increase if I add something manually in table. -->
    		<input type="radio" name="category" value="{{ categor.id }}">
-   		<label for="{{ categor.name }}">{{ categor.name }}</label>
+   		<label class="about" for="{{ categor.name }}">{{ categor.name }}</label>
+
    		{% endfor %}
 
+         <br><br>
+   <!-- user needs to select a category -->
+   <p class="brands_display">select a brand</p>
    		{% for brand in brands %}
+         <!-- for loop for everything that is in table Brands. Currently 5 different Values to select. Will increase if I add something manually in table. -->
    		<input type="radio" name="brand" value="{{ brand.id}}">
-   		<label for="{{ brand.name }}">{{ brand.name }}</label>
+   		<label class="about" for="{{ brand.name }}">{{ brand.name }}</label>
 
+         {% endfor %}
 
+         <br><br>
 
-   		{% endfor %}
+         <!-- if user clicks submit button then POST request in routes.py -->
    		<input type="submit" name="submit" value="Submit">
 
-   		{% for item in items %}
+         <br><br>
 
-   		<p>
-   		Item Id: 
-   		{{ item.id }}
-   		Item Name: 
-   		{{ item.name }}
-   		Description: 
-   		{{ item.description }}
-   		Season: 
-   		{{ item.season }}
-   		Brand:
-   		{{ brands[item.brand_id-1]['name']}}
-   		Category:
-   		{{ category[item.categories_id-1]['name']}}
-   		
+   <table id="table">
+      <div class="table_child">
+         <tr>
+               <th>Item ID</th>
+               <th>Item Name</th>
+               <th>Description</th>
+               <th>Season</th>
+               <th>Brand</th>
+               <th>Category</th>
+         </tr>
+      </div>
+      <div class="table list">
+         <!-- table adds up with every submit -->
+         {% for item in items %}
+         <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.season }}</td>
+            <!-- selects from brands table id and name but erases id so only name will be displayed in row -->
+            <td>{{ brands[item.brand_id-1]['name']}}</td>
+            <!-- selects from categories table id and name but erases id so only name will be displayed in row -->
+            <td>{{ category[item.categories_id-1]['name']}}</td>
+         </tr>
+   	   {% endfor %}
+      </div>
 
-   		
-   		</p>
-
-   	{% endfor %}
-
-
-   	</form>
-
-   	{% else %}
-
-	<h2>Try it yourself. Upload your first item by adding a name and a description text. Choose category and season. Feel free to give us some <a href="/about">feedback</a></h2>
 
 	{% endif %}
 {% endblock %}

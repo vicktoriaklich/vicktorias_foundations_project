@@ -1,6 +1,8 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<hr><br><br>
+
    <h2>What is SMART Closet?</h2>
    <h3>- Our goal is to make people aware of the fact that clothes and a style of one's own are something wonderful, but do not have to be equally expensive and harmful to the environment. With this application you can not only organize your own wardrobe, but also be informed. -</h3>
    <br>
@@ -9,16 +11,36 @@
    <h2>But wait, theres more!</h2>
    <h3>We want to support your love for fashion but also create some awarness. Just because you choose the same outfits more often than trying something new by recombining this doesn't mean that it is worth it to buy new things constanly - and we know - new clothes can make you super happy.</h3><br><h3>So, SMART Closet collects the information needed to display everything you need to know about the brand, like the production and if it's environmentally friendly produced.</h3>
    <hr>
-   <p>What do you think about the idea? Let us know by adding a comment below.<p>
+
+   <p class="feedback">What do you think about the idea? Let us know by adding a comment below.<p>
     <br>
-  <form method='POST' action='/about'>
-  <label for="comment">Feedback:</label>
-  <input name='comment' id="comment" size="100" maxlength="200" placeholder="What I like about the idea..."><br><br>
-  <input type="submit" value="Submit">
-  </form>
-  <br>
-     {% for comment in comments %}
-      {{ comment [0] }}
-    {% endfor %}
+    
+    <!-- user input for comments -- connected to table Comments --> 
+     {% if comments %}
+
+     <form class="about" action="/about" method="post">
+      <input class="enter_first_name" type="text" name="first_name" placeholder="First Name"> <br><br>
+      <input class="enter_comment" type="text" name="text" placeholder="Enter comment"> <br><br>
+      <input class="submit" type="submit" name="submit" value="Submit">
+      <hr>
+
+      <!-- Jinja2: for loop searches through comments in database -->
+      {% for comment in comments %}
+
+      <!-- columns first_name and text -->
+      <p class="comment_display">First Name: </p>
+      <p class="commen_written">{{ comment.first_name }} </p>
+      <p class="comment_display">Comment: </p>
+      <p class="commen_written">{{ comment.text }}</p>
+        <hr>
+
+      {% endfor %}
+    </form>
+
+    {% endif %}
+
+
+
+  
 {% endblock %}
 

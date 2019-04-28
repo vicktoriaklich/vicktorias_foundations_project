@@ -1,20 +1,36 @@
 {% extends "layout.html" %}
+
 {% block content %}
+<hr><br><br>
+
   <div class="jumbo">
   	<h2>- We love Fashion. -</h2>
   	<h2>- We love our Earth. -</h2>
   	<h3>Let's find out how to combine these two.</h3>
   </div>
+
+  <!-- link to different pages on landing page within href tags -->
   <h4>Feel free to search through the website. Check out the <a href="/about">About</a> page to gather more information and some deeper understanding. If you're interested in what's coming next, we created a <a href="/contact">contact form </a> to update you constantly. Also, there is a small prototype in the <a href="/upload">Upload</a> section, where you can test how it could work.<h4>
+
   <br><hr><br>
-  <p>Do you know how your favorite brands produce? To find out, just type in one of those brands displayed under this post. You can also suggest some more brands by adding your wishes in the <a href="/about">comment section</a>.</p><br><hr><br>
-  <p>You can choose between: Adidas // H&M // Zalando // Nike // GANT</p>
+
+  <p>Do you know how your favorite brands produce? To find out, just type in one of those brands displayed under this post. You can also suggest some more brands by adding your wishes in the <a href="/about">comment section</a>.</p>
+
+  <br><hr><br>
+
+  <!-- user can try out what the database stores so far
+    user types in one of the already displayed brands
+    stored in database Brands
+  -->
+  <p class="choose_brands">You can choose between: Adidas // H&M // Zalando // Nike // GANT</p>
   
+  <!-- input form to type in one of those brands with submit button -->
   <form method="POST" action="/">
     <input type="text" name="search_brand">
     <input type="submit" value="submit"></input>
   </form>
   
+  <!-- for loop searches in table for input and displays related information and link to Homepage -->
   {% for brand in brand %}
 
     <h2>{{ brand.name }}</h2> <br>
@@ -23,9 +39,5 @@
 
   {% endfor %}
 
-</div>
-
-
-   </div>
 
 {% endblock %}

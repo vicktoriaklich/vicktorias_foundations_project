@@ -1,13 +1,19 @@
 {% extends "layout.html" %}
  
 {% block content %}
+
+<hr><br><br>
+
   <h2>Interested?</h2>
   <br>
+  <!-- asking the user to fill out the contact form -->
   <p>If you want to be up to date, please fill out the contact form.</p>
  
+ <!-- if user filled out contact form and got no validation error then success and thank you message-->
   {% if success %}
     <p>Thank you for your message. We'll get back to you shortly.</p>
  
+ <!-- if validation error occurs flash will send a message -->
   {% else %}
  
     {% for message in form.name.errors %}
@@ -25,8 +31,10 @@
     {% for message in form.message.errors %}
       <div class="flash">{{ message }}</div>
     {% endfor %}
- 
+ <!-- specify where to send the form dara by setting the action to the contact function I created in routes.py -->
     <form action="{{ url_for('contact') }}" method=post>
+      <!-- Jinja2 template enginge generate the bulk of the form
+        hidden_tag() as protection against others who wants to submit to my server -->
       {{ form.hidden_tag() }}
  
       {{ form.name.label }}
@@ -42,7 +50,7 @@
       {{ form.message }}
  
       {{ form.submit }}
-    </form>
+  </form>
  
   {% endif %}
  

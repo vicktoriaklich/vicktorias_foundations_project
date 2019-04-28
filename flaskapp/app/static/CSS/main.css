@@ -1,71 +1,11 @@
 body {
-	margin: 0;
-	padding:0;
 	font-family: "Avenir", sans-serif;
 	font-weight: lighter;
 	letter-spacing: 3px;
 	color: black;
 }
 
-header {
-	background-color: #2B2B2B;
-	height: 35px;
-	width: 100%;
-	opacity: 0.9;
-	margin-bottom: 10px;
-}
-
-header h1.logo {
-	margin: 0;
-	font-size: 1.7em;
-	color: #fff;
-	text-transform: uppercase;
-	float: left;
-}
-
-header h1.logo:hover {
-	color: #fff;
-	text-decoration: none;
-}
-
-.container {
-	width: 940px;
-	margin: 0 auto;
-}
-
-div.jumbo {
-	padding: 10px 0 30px 0;
-	background-color: #eeeeee;
-	-webkit-border-radius: 6px;
-	-moz-border-radius: 6px;
-	border-radius: 6px;
-}
-
-h2 {
-	font-size: 1.7em;
-	margin-top: 40px;
-	text-align: center;
-	letter-spacing: -2px;
-}
-
-h3 {
-	font-size: 1.7em;
-	font-weight: 100;
-	margin-top: 30px;
-	text-align: center;
-	letter-spacing: -1px;
-	color: #999;
-}
-
-h4 {
-	font-size: 1.7em;
-	font-weight: 100;
-	margin-top: 30px;
-	text-align: center;
-	letter-spacing: -1px;
-	color: gray;
-}
-
+/* Nav Bar */
 .menu {
 	float: right;
 	margin-top: 8px;
@@ -80,9 +20,137 @@ h4 {
 }
 
 .menu li a {
-	color: #999;
+	color: #D8BCE5;
 	text-decoration: none;
 }
+
+/* Home Page */
+header {
+	background-color: ##D8BCE5;
+	height: 35px;
+	width: 100%;
+	opacity: 0.9;
+	margin-bottom: 10px;
+}
+
+header h1.logo {
+	margin: 0;
+	font-size: 1.7em;
+	color: #D8BCE5;
+	text-transform: uppercase;
+	float: left;
+}
+
+.container {
+	width: 940px;
+	margin: 0 auto;
+}
+
+div.jumbo {
+	padding: 10px 0 30px 0;
+	background-color: #eeeeee;
+	color: #D8BCE5;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+
+h2 {
+	font-size: 1.7em;
+	margin-top: 40px;
+	text-align: center;
+	letter-spacing: -2px;
+	color: #F7C4A8;
+}
+
+h3 {
+	font-size: 1.7em;
+	font-weight: 100;
+	margin-top: 30px;
+	text-align: center;
+	letter-spacing: -1px;
+	color: gray;
+}
+
+h4 {
+	font-size: 1.7em;
+	font-weight: 100;
+	margin-top: 30px;
+	text-align: center;
+	letter-spacing: -1px;
+	color: gray;
+}
+
+a {
+	color: #F7C4A8;
+}
+
+/* about page - feedback form */
+.feedback  {
+	color: gray;
+}
+
+.enter_first_name {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  background-color: #f8f8f8;
+}
+
+.enter_comment {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+}
+
+.comment_display, .categories_display, .brands_display {
+	color: #F7C4A8;
+	font-size: 1.2em;
+}
+
+.commen_written {
+	color: gray;
+	font-size: 0.9em;
+}
+
+/* Upload page */
+.choose_brands {
+	color: #F7C4A8;
+}
+
+.enter_item_name, .enter_description, .enter_season {
+  width: 70%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  background-color: #f8f8f8;
+}
+
+.about {
+	display: inline;
+	color: gray;
+}
+
+#table, th, td {
+	border: 1px solid gray;
+	border-collapse: collapse;
+	color: gray;
+}
+
+#table {
+	width: 100%;
+}
+
+th {
+	height: 50px;
+}
+
 
 /*Contact Form */
 form label {
@@ -148,7 +216,6 @@ form input#submit:hover{
   background-image: -o-linear-gradient(top, #dbdbdb, #cccccc);
   background-image: linear-gradient(top, #dbdbdb, #cccccc);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#dbdbdb, endColorstr=#cccccc);
 } 
-
 
 
 
