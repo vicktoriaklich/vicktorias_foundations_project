@@ -11,11 +11,12 @@ Architecture:
 * Jinja (Template Engine FLASK)
 * CSS
 
-- Backend
+- Backend -
 * Python
-* BOTTLE
+* FLASK
 * MYSQL
 ____
+
 in order to have a look at the website, you need to install FLASK and an virtual environment.
 Download github repository and start local server via console.
 ____
@@ -38,6 +39,6 @@ Furthermore I am open for any feedback and would like to give everyone the possi
 
 On the whole, I have worked hard on content and frontend, because - if this is in the background for the assessment - it is also in the eye of the viewer to evaluate the functionality of a product.
 
-I switched from SQLite to MySQL because I wanted to use Foreign Keys to connect multiple tables. The additional tables were created with the idea to give the user information if he asks for it and to store various items and comments in a database. For the communication I used SQLAlchemy. 
+I switched from SQLite to MySQL because I wanted to use Foreign Keys to connect multiple tables. The additional tables were created with the idea to give the user information if she or he asks for it and to store various items and comments in a database. For the communication I used SQLAlchemy. 
 
 All further details about function and history can be found as comments in the code.
